@@ -57,6 +57,35 @@ NapCat **v4.18.42** 的 Windows 部署方法与一键部署脚本（搭配 QQ 9.
 - **首次使用**：双击 `NapCat.Shell\launcher.bat` 扫码登录（需管理员权限，自动提权）；
 - **已登录过**：双击桌面 **NapcatQQ** 快捷方式即可免扫码快速登录（依赖本机 QQ 已有登录记录）。
 
+## 插件
+
+### 插件市场（第三方索引）
+
+原 NapCat 官方插件索引仓库已随上游归档一并删除，**v4.18.42 版的 NapCat 已改用第三方社区插件索引**（HolyFoxTeam 维护）：
+
+- 索引地址：<https://raw.githubusercontent.com/HolyFoxTeam/napcat-plugin-community-index/refs/heads/main/plugins.v4.json>
+- 索引内容：42 个插件（插件更新检测、缓存清理、插件调试服务等），含 `version` / `updateTime` / `statsUrl` / `plugins` 字段
+
+启动 NapCat 后，在 **WebUI 的插件市场**里即可在线安装、更新、卸载插件，插件列表默认从上面的索引拉取。
+
+> 提示：`raw.githubusercontent.com` 直连不稳定时，可在 URL 前加 `http://v4.gh-proxy.org/` 加速访问。
+
+### 手动安装插件
+
+不走插件市场也可以：手动下载插件的 zip 包，解压到 `NapCat.Shell\plugins\` 目录，重启 NapCat 即生效。
+
+### 自定义插件索引
+
+想换用自己的索引仓库时，编辑 `NapCat.Shell\napcat.mjs`，搜索 `plugins.v4.json`，找到：
+
+```js
+Dve = [ "https://raw.githubusercontent.com/HolyFoxTeam/napcat-plugin-community-index/refs/heads/main/plugins.v4.json" ]
+```
+
+把数组里的 URL 替换或追加为自己的索引地址（数组支持多个源，逗号分隔）。
+
+> `napcat.mjs` 是约 3MB 的打包压缩文件，记事本打开会很卡，建议用 VS Code 等编辑器修改并保存。
+
 ## 下载地址
 
 ### QQ 9.9.33（脚本按架构自动选择，三链回退）
@@ -115,6 +144,7 @@ QQ 尚未安装或未正确安装。`launcher.bat` 通过注册表定位 QQ 安�
 - [NapNeko/NapCatQQ](https://github.com/NapNeko/NapCatQQ) — NapCat 原项目
 - [XingYunStar/NapCatQQ](https://github.com/XingYunStar/NapCatQQ) — 历史版本归档
 - [Rodert/qq-versions](https://github.com/Rodert/qq-versions) — QQ 安装包归档
+- [HolyFoxTeam/napcat-plugin-community-index](https://github.com/HolyFoxTeam/napcat-plugin-community-index) — 第三方插件索引
 
 ## 免责声明
 
