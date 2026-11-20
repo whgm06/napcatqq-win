@@ -136,6 +136,15 @@ QQ 尚未安装或未正确安装。`launcher.bat` 通过注册表定位 QQ 安�
 **Q：quickLogin.bat 启动失败？**
 按生成文件内的注释，将 `launcher.bat` 替换为 `launcher-win10.bat`（Windows 10）、`launcher-user.bat`（免管理员）或 `launcher-win10-user.bat`（Win10 免管理员）。
 
+**Q：插件被拒载，日志提示 `not in official plugin whitelist`？**
+v4.18.42 在源码里硬编码了 4 个官方插件白名单（`napcat-plugin-builtin` / `cleaner` / `ssqq` / `qce`），**任何社区插件或自装插件都会被拒载**，且没有配置开关。需要手动修改 `NapCat.Shell\napcat.mjs`（改前先备份）：搜索 `not in official plugin whitelist`，把 `getRejectReason` 中的整行 return 替换为：
+
+```js
+return n ? `sensitive keyword "${n}"` : null;
+```
+
+即去掉白名单判断、保留敏感词（发卡/黑灰产等 20 个词）拦截。改完重启 NapCat 生效，所有社区插件即可加载。
+
 **Q：为什么锁定 QQ 9.9.33？**
 只实测了 QQ 9.9.33 与 NapCat v4.18.42 的组合可用；其他 QQ 版本未验证，不保证兼容。
 
